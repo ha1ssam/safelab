@@ -60,9 +60,3 @@ npm run dev
 - O diretório `node_modules` não é versionado (veja `.gitignore`).
 - O banco `db.sqlite3` é apenas para desenvolvimento local.
 - Para produção, configure um banco de dados adequado e variáveis de ambiente.
-
-## Diretrizes críticas
-
-- **Sem IA em runtime.** Toda lógica é determinística, baseada em dados e regras.
-- **Nunca assumir segurança.** Falta de dado → resposta `unknown` com alerta de risco.
-- **Regras explícitas e separadas** do CRUD, fáceis de expandir.
