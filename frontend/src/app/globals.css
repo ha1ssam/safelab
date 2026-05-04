@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* SafeLab tokens — see tailwind.config.js for the matching scale */
+  --paper:   #f4f1ea;
+  --paper-2: #ebe6da;
+  --line:    #d8d2c2;
+  --ink:     #0e1a16;
+  --ink-2:   #1a2a23;
+  --brand:   #0f5d4d;
+  --brand-2: #0a3d33;
+  --brand-3: #c8e6dd;
+  --accent:  #d4a24a;
+  --risk-low:  #2f7d63;
+  --risk-mid:  #d4a24a;
+  --risk-high: #b8442e;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Faint technical grid — applied on the <body> via .bg-biolab-pattern. */
+.bg-biolab-pattern {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(to right, rgba(14, 26, 22, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 26, 22, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ───────── Buttons ───────── */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded px-4 py-2.5
+         bg-biolab-500 hover:bg-biolab-600 active:bg-biolab-700
+         text-white font-medium transition shadow-soft
+         disabled:opacity-50 disabled:cursor-not-allowed;
+  letter-spacing: -0.01em;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded px-4 py-2.5
+         bg-white border border-biolab-200 hover:border-biolab-400
+         text-biolab-700 font-medium transition;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded px-3 py-2
+         text-biolab-700 hover:bg-biolab-100/60 transition;
+}
+
+.input {
+  @apply w-full rounded border border-biolab-200 bg-white px-3.5 py-2.5
+         text-biolab-900 placeholder-biolab-400/70
+         focus:outline-none focus:ring-2 focus:ring-biolab-500/30 focus:border-biolab-500
+         transition;
+}
+
+.card {
+  @apply bg-white rounded border border-biolab-200 shadow-card;
+}
+
+/* ───────── Badges ───────── */
+.badge {
+  @apply inline-flex items-center gap-1 rounded-sm px-2 py-0.5 text-xs font-medium;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.02em;
+}
+
+.badge-safe    { background: rgba(47,125,99,0.10);  color: var(--risk-low);  border: 1px solid rgba(47,125,99,0.30); }
+.badge-unknown { background: rgba(212,162,74,0.12); color: #8a6420;          border: 1px solid rgba(212,162,74,0.40); }
+.badge-unsafe  { background: rgba(184,68,46,0.10);  color: var(--risk-high); border: 1px solid rgba(184,68,46,0.30); }
+
+/* ───────── Typography helpers ───────── */
+.text-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.text-serif {
+  font-family: "Instrument Serif", Georgia, serif;
+}
+
+.meta-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hairline {
+  height: 1px;
+  background: var(--line);
+  width: 100%;
+}
