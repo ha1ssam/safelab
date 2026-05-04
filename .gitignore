@@ -1,0 +1,11 @@
+# Dependências Node
+frontend/node_modules/
+
+# Dependências Python
+backend/**/__pycache__/
+backend/**/migrations/
+backend/db.sqlite3
+
+# Outros arquivos
+*.log
+.env

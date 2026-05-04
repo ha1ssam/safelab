@@ -1,18 +1,20 @@
-# BioLab — Consulta de Substâncias e Compatibilidade Química
+# SafeLab — Consulta de Substâncias e Compatibilidade Química
 
-Sistema acadêmico (Biomedicina) para auxiliar profissionais de laboratório a consultar
-informações sobre substâncias químicas e verificar compatibilidades entre elas, com foco
-em segurança.
+
+Sistema acadêmico para auxiliar profissionais de laboratório a consultar informações sobre substâncias químicas e verificar compatibilidades entre elas, com foco em segurança.
+
 
 > **Aviso:** Sistema educacional e de apoio. Não substitui normas oficiais (NR, FISPQ, GHS, etc.).
+
+Repositório: https://github.com/ha1ssam/safelab.git
 
 ## Stack
 
 - **Backend:** Django 6 + DRF + SimpleJWT (cookie-based) + django-filter + drf-spectacular
 - **Frontend:** Next.js 13 (App Router) + TypeScript + Tailwind CSS + lucide-react + axios
-- **Banco:** SQLite em desenvolvimento
+- **Banco:** SQLite (apenas para desenvolvimento)
 
-## Estrutura
+## Estrutura de Pastas
 
 ```
 .
@@ -29,7 +31,7 @@ em segurança.
         └── lib/            # api, auth, types
 ```
 
-## Como rodar
+## Como rodar o projeto
 
 ### Backend
 
@@ -39,7 +41,8 @@ python -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py loaddata initial_data
+# (Opcional) Carregar dados iniciais, se disponível
+# python manage.py loaddata initial_data
 python manage.py createsuperuser
 python manage.py runserver
 ```
@@ -51,6 +54,12 @@ cd frontend
 npm install
 npm run dev
 ```
+
+## Observações importantes
+
+- O diretório `node_modules` não é versionado (veja `.gitignore`).
+- O banco `db.sqlite3` é apenas para desenvolvimento local.
+- Para produção, configure um banco de dados adequado e variáveis de ambiente.
 
 ## Diretrizes críticas
 
