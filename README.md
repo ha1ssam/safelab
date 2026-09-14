@@ -23,7 +23,8 @@ Repositório: https://github.com/ha1ssam/safelab.git
 │   ├── accounts/           # autenticação JWT por cookie
 │   ├── substances/         # cadastro de substâncias
 │   ├── hazards/            # riscos (GHS) associados
-│   └── compatibility/      # registros + motor de regras determinístico
+│   ├── compatibility/      # registros + motor de regras determinístico
+│   └── fispq/              # dados de FISPQ/GHS + importação do PubChem
 └── frontend/
     └── src/
         ├── app/            # rotas (Next.js App Router)
@@ -41,8 +42,8 @@ python -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python manage.py migrate
-# (Opcional) Carregar dados iniciais, se disponível
-# python manage.py loaddata initial_data
+python manage.py seed_data                   # dados iniciais: riscos, substâncias e compatibilidades
+# python manage.py import_pubchem --catalog  # (opcional) importa o catálogo de reagentes do PubChem (requer internet)
 python manage.py createsuperuser
 python manage.py runserver
 ```
@@ -57,6 +58,10 @@ npm run dev
 
 ## Observações importantes
 
-- O diretório `node_modules` não é versionado (veja `.gitignore`).
-- O banco `db.sqlite3` é apenas para desenvolvimento local.
-- Para produção, configure um banco de dados adequado e variáveis de ambiente.
+- `node_modules`, `.next`, `venv`, arquivos `.env` e o banco `db.sqlite3` não são versionados (veja `.gitignore`).
+- O banco SQLite é apenas para desenvolvimento local: cada pessoa gera o seu com `migrate` + `seed_data`.
+- Para produção, configure um banco de dados adequado e as variáveis de `backend/.env.example` — em especial `DJANGO_DEBUG=False` e uma `DJANGO_SECRET_KEY` secreta (o backend não inicia com a chave de desenvolvimento).
+
+## Licença
+
+Distribuído sob a licença MIT. Veja [LICENSE](LICENSE).

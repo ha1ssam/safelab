@@ -1,11 +1,30 @@
 # Dependências Node
-frontend/node_modules/
+node_modules/
 
-# Dependências Python
-backend/**/__pycache__/
-backend/**/migrations/
-backend/db.sqlite3
+# Build e cache do Next.js
+frontend/.next/
+frontend/out/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Banco e arquivos locais do Django (nunca versionar)
+*.sqlite3
+backend/media/
+backend/staticfiles/
+
+# Variáveis de ambiente (o .env.example continua versionado)
+.env
+.env.*
+!.env.example
+
+# Configurações locais do Claude Code
+.claude/settings.local.json
+.claude/worktrees/
 
 # Outros arquivos
 *.log
-.env

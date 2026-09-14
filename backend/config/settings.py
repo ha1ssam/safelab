@@ -6,6 +6,7 @@ Lab chemical compatibility consultation — backend configuration.
 import os
 from pathlib import Path
 from datetime import timedelta
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 # ─── Base Directory ───────────────────────────────────────────────────────────
@@ -15,10 +16,14 @@ load_dotenv(BASE_DIR / ".env")
 # ─── Security ─────────────────────────────────────────────────────────────────
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() in ("true", "1", "yes")
 
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY",
-    "django-insecure-dev-key-biolab-academic-2026",
-)
+# The fallback key is public (it lives in the repository) — local development only.
+_DEV_SECRET_KEY = "django-insecure-dev-key-biolab-academic-2026"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") or _DEV_SECRET_KEY
+
+if not DEBUG and SECRET_KEY in (_DEV_SECRET_KEY, "change-me-in-production"):
+    raise ImproperlyConfigured(
+        "Defina DJANGO_SECRET_KEY com um valor secreto quando DJANGO_DEBUG=False."
+    )
 
 ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1"

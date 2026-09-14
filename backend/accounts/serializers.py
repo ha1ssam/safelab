@@ -17,7 +17,8 @@ class UserSerializer(serializers.ModelSerializer):
             "institution", "registration_number",
             "is_active", "date_joined",
         )
-        read_only_fields = ("id", "is_active", "date_joined", "role_display", "is_supervisor")
+        # `role` is read-only so users can't promote themselves via PATCH /auth/me/.
+        read_only_fields = ("id", "role", "is_active", "date_joined", "role_display", "is_supervisor")
 
 
 class RegisterSerializer(serializers.ModelSerializer):
